@@ -55,6 +55,8 @@
             background-color: #336699;
             color: #fff;
             cursor: pointer;
+            width: 100px;
+            height: 45px;
         }
 
         .form-section button:hover {
@@ -82,13 +84,13 @@
 
        <div class="image-container">                                                                                                                                                                                    
             <!-- Gambar 1 -->
-            <img src="{{ asset('images/element14.png') }}" alt="Gambar 1" style="width: 70%; height: 75%; margin-bottom: 10px; margin-left: -170px; margin-top: -80px;">
+            <img src="{{ asset('images/element14.png') }}" alt="Gambar 1" style="width: 50%; height: 105%; margin-bottom: 10px; margin-left: -190px; margin-top: -80px;">
 
             <!-- Gambar 2 -->
-            <img src="{{ asset('images/gambar3.png') }}" alt="Gambar 2" style="width: 65%; height: 60%; margin-bottom: 10px; margin-left: -130px; margin-top: -250;">
+            <img src="{{ asset('images/gambar3.png') }}" alt="Gambar 2" style="width: 65%; height: 80%; margin-bottom: 10px; margin-left: -130px; margin-top: -250;">
 
             <!-- Gambar 3 -->
-            <img src="{{ asset('images/element15.png') }}" alt="Gambar 3" style="width: 80%; height: 80%; margin-left: -130px; margin-top: -250px;">
+            <img src="{{ asset('images/element15.png') }}" alt="Gambar 3" style="width: 40%; height: 55%; margin-left: -110px; margin-top: -160px;">
         </div>
 
 
@@ -96,16 +98,16 @@
 
             <div class="form-section">
                 <!-- Opening form tag with the correct action and method -->
-                <form method="POST" action="{{ route('submit-form') }}">
+                <form action="{{ route('submit-form') }}" method="POST">
                     @csrf <!-- CSRF token -->
 
                     <div style="display: flex; justify-content: space-between;">
-                        <div>
+                        <div style="margin-right: 20px;">
                            <label for="nama">Nama Pendaftar</label>
                            <input type="text" name="nama" id="nama" placeholder="Type here..." style="background-color: #fff;">
                         </div>
 
-                        <div>
+                        <div style="width: 320px; margin-right: -45px;">
                            <label for="jumlah_tamu">Jumlah Tamu</label>
                            <input type="text" name="jumlah_tamu" id="jumlah_tamu" style="background-color: #fff;">
                         </div>
@@ -113,8 +115,8 @@
 
 
                     <!-- Form Tanggal Mulai dan Tanggal Selesai -->
-                    <div style="display: flex; justify-content: space-between;">
-                        <div>
+                    <div style="display: flex; justify-content: space-between; width: 459px;">
+                        <div style="margin-right: 20px;">
                             <label for="tanggal_mulai">Tanggal Mulai</label>
                             <input type="date" name="tanggal_mulai" id="tanggal_mulai" placeholder="hh/bb/tttt">
                         </div>
@@ -134,7 +136,7 @@
 
                     <div style="display: flex; justify-content: space-between;">
 
-                        <div>
+                        <div style="width: 215px;">
                            <!-- Form Tujuan -->
                            <label for="tujuan">Tujuan</label>
                            <select name="tujuan" id="tujuan">
@@ -145,7 +147,7 @@
                            </select>
                         </div>
 
-                        <div>
+                        <div style="width: 225px;">
                             <!-- Form Staff (Optional) -->
                     <label for="staff">Staff (Optional)</label>
                     <select name="staff" id="staff">
@@ -160,23 +162,40 @@
                     <label for="keterangan">Keterangan</label>
                     <textarea name="keterangan" id="keterangan" placeholder="Type here..."></textarea>
 
-                    <div style="display: flex; justify-content: space-between;">
+                    <div style="display: flex; justify-content: space-between; margin-left: 250px;">
                     <!-- Tombol Submit -->
                     <button type="submit">Submit</button>
 
                     <!-- Tombol Check -->
-                    <button class="check-button">
-                        <a href="/check" style="text-decoration: none; font-color: white;">Check</a>
-                    </button>
+
+                    <!--<button class="check-button" onclick="window.location.href='/check'">
+                    Check
+                    </button>-->
+
+                    <!--<button type="button" class="check-button" onclick="window.location.href='/check'">Check</button>-->
+                    <!--<button type="button" class="check-button" onclick="window.location.href='{{ route('verifikasi-referral') }}'">Check</button>-->
+
+                    <!--<button type="button" class="check-button" onclick="window.location.href='/check'">Check</button>-->
+
+                    <button type="button" class="check-button" onclick="window.location.href='{{ route('check.auth') }}'">Check</button>
+                    <!--<a href="{{ route('check.auth') }}">Check</a>-->
                     </div>
 
 
                 </form>
 
+
             </div>
         </div>
 
     </div>
+
+
+    <script>
+        function checkForm() {
+            window.location.href = '/check';
+        }
+    </script>
 
 </body>
 </html>
