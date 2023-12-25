@@ -10,6 +10,7 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
 
         <!-- Styles -->
         <style>
@@ -147,6 +148,7 @@ p {
 }
 }
 
+/*content2*/
 .custom-container {
       display: flex;
       justify-content: center;
@@ -179,6 +181,22 @@ p {
       width: 900px;
       height: 350px;
     }
+
+    /* Responsivitas untuk layar kecil */
+@media only screen and (max-width: 768px) {
+  .gambar-konten {
+    display: none; /* Menyembunyikan gambar pada layar kecil */
+  }
+
+  .text-container {
+    margin: 0; /* Menghapus margin pada layar kecil */
+  }
+
+  .centered-image {
+    width: 90%; /* Membuat gambar memenuhi lebar pada layar kecil */
+    height: 40%;
+  }
+}
 
     /*Content3*/
     .container-kustom {
@@ -233,6 +251,14 @@ p {
   z-index: 2;
 }
 
+/* Gaya untuk ukuran layar kecil */
+@media only screen and (max-width: 768px) {
+  .gambar-konten2,
+  .gambar-konten3 {
+    display: none; /* Menghilangkan gambar pada layar kecil */
+  }
+}
+
 .box-container {
             display: flex;
             justify-content: space-between;
@@ -272,9 +298,34 @@ p {
           margin-left: 20px;
         }
 
+
+        /* Tambahan CSS untuk tata letak pada layar kecil */
+@media only screen and (max-width: 767px) {
+  .box-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .box {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .svg-container {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .svg-icon {
+    margin-left: 0;
+  }
+}
+
+
         /*footer*/
 
-        footer {
+        /*footer {
             background-color: #102785;
             color: white;
             padding: 20px;
@@ -313,13 +364,82 @@ p {
         }
 
         .square {
-            width: 50px;
-            height: 50px;
+            width: 190px;
+            height: 70px;
             background-color: #102785;
             border: 2px solid white;
             box-sizing: border-box;
-        }
+            border-radius: 10px;
+        }*/
 
+
+        footer {
+      background-color: #102785;
+      color: white;
+      padding: 20px;
+      display: flex;
+      /*flex-wrap: wrap; /* Menambahkan wrap agar elemen dapat membungkus ke baris baru */
+      justify-content: space-between;
+    }
+
+    .contact, .address, .social-media {
+      text-align: left;
+      margin-bottom: 20px; /* Menambahkan margin bawah antar elemen */
+      margin-left: 20px;
+    }
+
+    .social-media {
+      text-align: left;
+      margin-left: -350px;
+    }
+
+    .social-media i {
+      margin-right: 5px;
+      margin-left: -250px;
+    }
+
+    .social-media p {
+      margin-right: 5px;
+      margin-left: -380px;
+      text-align: left;
+    }
+    .social-media h3 {
+      margin-right: 5px;
+      margin-left: -630px;
+      text-align: left;
+    }
+
+    .address p {
+      margin-bottom: 5px;
+      margin-left: -600px;
+    }
+
+    .square {
+            width: 190px;
+            height: 70px;
+            background-color: #102785;
+            border: 2px solid white;
+            box-sizing: border-box;
+            border-radius: 10px;
+            margin-left: -800px;
+            margin-right: -5px;
+        }
+        @media (max-width: 768px) {
+  /* CSS untuk ukuran layar kecil */
+  footer {
+    flex-direction: column; /* Ubah arah tata letak menjadi kolom pada layar kecil */
+    align-items: flex-start; /* Posisikan elemen pada bagian kiri pada layar kecil */
+  }
+
+  .contact, .address, .social-media, .square {
+    margin-left: 20px; /* Tambahkan margin kiri pada elemen pada layar kecil */
+    margin-right: 20px;
+  }
+
+  .square {
+    display: none; /* Sembunyikan social-media dan square pada layar kecil */
+  }
+}
 
 /* Sembunyikan gambar pada layar yang lebih kecil */
 
@@ -391,7 +511,7 @@ p {
       
     </div>
 
-  </div>
+ </div>
 
   <!--Content3-->
   <div class="container-kustom">
@@ -408,7 +528,7 @@ p {
   <!--Lanjutan Content3-->
 
   <div class="box-container">
-        <div class="box" style="width: 384px; height: 180px;">
+        <div class="box" ><!--style="width: 384px; height: 180px;"-->
             <div class="text-style">Jumlah Pengunjung</div>
             <div class="svg-container">
                 <div class="number">198</div>
@@ -434,8 +554,11 @@ p {
         </div>
     </div>
 
+    <br>
+    <br>
+
     <!--footer-->
-    <footer>
+    <!--<footer>
         <div class="contact-info">
             <h4>Nomor Kontak</h4>
             <p>+62 877 2403 9619</p>
@@ -452,7 +575,31 @@ p {
             </div>
         </div>
         <div class="square"></div>
-    </footer>
+    </footer>-->
+
+    <footer>
+  <div class="contact">
+    <p><strong>Nomor Kontak</strong></p>
+    <p>+62 877 2403 9619</p>
+  </div>
+
+  <div class="address">
+    <p><strong>Alamat</strong></p>
+    <p>Jl. Dr. Radjiman No. 6, <br>
+      Pasir Kaliki, Kec. <br>
+      Cicendo, Kota Bandung <br>
+      Jawa Barat 40171</p>
+  </div>
+
+  <div class="social-media">
+    <h3><strong>Social Media</strong></h3>
+    <p><i class="fab fa-instagram"></i>tikomdik_disdikjabar</p>
+    <p><i class="fab fa-facebook"></i>Tikomdik Jabar</p>
+    <p><i class="fab fa-twitter"></i>@tikomdik</p>
+  </div>
+
+  <div class="square"></div>
+</footer>
 
     <!--<footer>
         <div class="contact-info">

@@ -1,11 +1,24 @@
 <!-- resources/views/check/index.blade.php -->
+@extends('layouts.app')
+error_reporting(E_ALL);
+ini_set('display_errors', true);
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Form Kode Referensi</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -102,7 +115,7 @@
     </style>
 </head>
 <body>
-
+@section('content')
     <div class="container">
         <img src="{{ asset('images/element17.png') }}" alt="Gambar 1" class="image1">
         <img src="{{ asset('images/gambar4.png') }}" alt="Gambar 2" class="image2">
@@ -131,8 +144,55 @@
     @csrf
     <label for="kodeReferral">Masukkan Kode Referral:</label>
     <input type="text" name="kodeReferral" id="kodeReferral" required>
-    <button type="submit">Verifikasi</button>
+    <button type="button" onclick="verifikasiReferral()">Verifikasi</button>
+    <!--<button type="submit">Verifikasi</button>-->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Verifikasi
+    </button>
     </form>
+
+    @if(isset($formdata))
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Data from form_data table</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+
+                    
+                        <p>Nama: {{ $formdata->nama }}</p>
+                        <p>Keterangan: {{ $formdata->keterangan }}</p>
+                        <p>Nomor: 0812345678910</p>
+                   
+
+                    </div>
+
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        @else
+        @php dd($error); @endphp
+        <div>
+          <p>{{ isset($error) ? $error : 'Default Error Message' }}</p>
+        </div>
+        @endif
+        
+    
+
+@endsection
 
     <!-- check.blade.php -->
 <!--<form action="{{ route('verifikasi-referral') }}" method="GET">
@@ -153,11 +213,66 @@
 </form>-->
 
 
+<!--baru ngt ini-->
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // ...
 
+    function showPopup() {
+        var referralCode = document.getElementById('kodeReferral').value;
 
+        $.ajax({
+            url: '/get-popup-data/' + referralCode,
+            method: 'GET',
+            success: function (data) {
+                var formData = data.formData;
+                var userData = data.userData;
 
-    <script>
+                // Tampilkan data dalam pop-up (gantilah ini dengan logika tampilan pop-up Anda)
+                alert('Nama: ' + formData.nama + '\nKeterangan: ' + formData.keterangan + '\nNomor: ' + userData.nomer_hp);
+            },
+            error: function () {
+                alert('Gagal mendapatkan data.');
+            }
+        });
+    }
+
+    // ...
+});
+</script>
+<!--end baru bgt-->
+
+<!--baru dan berguna-->
+
+<script>
+function verifikasiReferral() {
+    var kodeReferral = $('#kodeReferral').val();
+
+    $.ajax({
+        url: '/get-popup-data/' + kodeReferral,
+        type: 'GET',
+        success: function(data) {
+            showPopup(data);
+        },
+        error: function() {
+            alert('Gagal mendapatkan data.');
+        }
+    });
+}
+
+function showPopup(data) {
+    if (data) {
+        alert('Nama: ' + data.nama + '\nKeterangan: ' + data.keterangan);
+    } else {
+        alert('Data tidak ditemukan.');
+    }
+}
+</script>
+
+<!--end-->
+
+    <!--<script>
     document.addEventListener('DOMContentLoaded', function () {
         var referralCode = "{{ session('referral_code') }}";
 
@@ -170,19 +285,15 @@
         alert('Berhasil!');
     }
     });
-    </script>
+    </script>-->
 
-<!-- check.blade.php -->
-@if(session('success'))
+    @if(session('success'))
+
     <script>
         showPopup();
     </script>
+
 @endif
-
-
-
-    
-
 
 </body>
 </html>

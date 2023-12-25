@@ -48,6 +48,26 @@ Route::get('/verifikasi-referral', [CheckController::class, 'verifikasiReferral'
 
 Route::match(['get', 'post'], '/verifikasi-referral', [CheckController::class, 'verifikasiReferral'])->name('verifikasi-referral');
 
+//baru
+//Route::get('/get-popup-data/{kodeReferral}', [CheckController::class, 'getPopupData']);
+Route::get('/get-popup-data/{referralCode}', [CheckController::class, 'getPopupData']);
+
+
+// routes/web.php bru bgt
+
+Route::get('/get-popup-data/{referralCode}', 'CheckController@getPopupData')->name('get-popup-data');
+Route::get('/check/{referral_code}', 'CheckController@show');
+
+Route::get('/check', 'CheckController@showCheckView')->name('check.auth');
+Route::get('/check', [CheckController::class, 'showCheckView'])->name('check.auth');
+
+
+
+
+
+//$data = DB::table('form_data')->where('kode_referral', $kodeReferral)->first();
+
+
 
 
 
